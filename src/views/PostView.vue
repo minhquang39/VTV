@@ -1,13 +1,13 @@
 <template>
-  <div v-if="postContent" class="py-12 pr-8">
+  <div v-if="postContent" class="py-4 px-2 md:py-12 md:pr-8">
     <h3
-      class="text-xl font-bold text-[#111] uppercase hover:text-textHover border-b-[3px] border-mainMenu"
+      class="pb-3 text-xl font-bold text-[#111] uppercase hover:text-textHover border-b-[3px] border-mainMenu"
     >
       {{ postContent?.category_name }}
     </h3>
 
     <div class="flex justify-center">
-      <div class="w-10/12">
+      <div class="w-screen md:w-10/12">
         <h2 class="my-6 text-[#33332F] text-2xl font-semibold leading-10">
           {{ postContent?.title }}
         </h2>
@@ -17,7 +17,7 @@
           <span class="text-[#8b8b8b]"> đã đăng lúc</span>
           {{ postContent?.time }} - {{ postDate }}
         </p>
-        <div v-html="postContent?.content"></div>
+        <div v-html="postContent?.content" class="text-justify mb-5"></div>
         <div class="flex text-xs text-[#8d8d8d] gap-x-3">
           <div class="flex gap-x-1">
             <span

@@ -17,11 +17,12 @@
       <div class="flex justify-between items-center pb-2">
         <!-- left -->
         <div class="flex items-center">
-          <img
-            src="/images/logo-vtv.png"
-            alt=""
-            class="w-24 h-16 md:w-auto md:h-auto"
-          />
+          <router-link to="/">
+            <img
+              src="/images/logo-vtv.png"
+              alt=""
+              class="w-24 h-16 md:w-auto md:h-auto"
+          /></router-link>
           <div>
             <p
               class="uppercase text-[12px] font-medium md:text-lg text-[#c7c7c7]"
@@ -115,18 +116,112 @@
       class="flex items-center justify-between px-1 md:px-4 xl:px-10 z-10"
       :class="
         isHiddenHeader
-          ? 'fixed top-0 left-0 right-0 bg-textHover'
+          ? 'fixed top-0 left-0 right-0 bg-[#0048a8]'
           : 'bg-[#0048a8] lg:bg-mainMenu'
       "
     >
       <div
-        class="bg-customBg fixed lg:hidden bottom-0 top-0 left-0 right-0 z-0"
-        v-if="!showNavMobile"
+        class="bg-customBg fixed lg:hidden bottom-0 top-0 left-0 right-0 z-50"
         @click="showNavOnMobile"
+        v-if="showNavMobile"
       ></div>
       <!-- menu bar mobile  -->
       <div class="py-2 relative group">
-        <span class="">
+        <!-- Nav on mobile  -->
+        <ul
+          class="absolute top-0 -left-2 md:top-8 md:-left-5 w-screen md:w-80 md:h-screen bg-[#105099] text-white md:hidden group-hover:block opacity-0 group-hover:opacity-100 transition-all duration-500 z-50 md:transform-none"
+          :class="showNavMobile ? 'translate-x-0' : '-translate-x-full'"
+        >
+          <li class="border-b border-white hover:bg-white">
+            <span
+              class="hidden md:inline-block block p-3 hover:text-textHover hover:translate-x-10 transition-transform duration-300 cursor-pointer"
+              >Giới thiệu</span
+            >
+            <span
+              class="md:hidden uppercase block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer"
+              >Trang chủ</span
+            >
+          </li>
+          <li class="border-b border-white hover:bg-white">
+            <span
+              class="md:hidden uppercase block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer"
+              >Giới thiệu</span
+            >
+          </li>
+
+          <li class="border-b border-white hover:bg-white">
+            <span
+              class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
+              >Tin tức - Sự kiện</span
+            >
+          </li>
+          <li class="border-b border-white hover:bg-white">
+            <span
+              class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
+              >Hợp tác quốc tế</span
+            >
+          </li>
+          <li class="border-b border-white hover:bg-white">
+            <span
+              class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
+              >VTV vì cộng đồng</span
+            >
+          </li>
+          <li class="border-b border-white hover:bg-white hidden md:block">
+            <span
+              class="p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case hidden md:block"
+              >VTV với khán giả</span
+            >
+          </li>
+          <li class="border-b border-white hover:bg-white hidden md:block">
+            <span
+              class="p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case hidden md:block"
+              >Bản tin Magazine</span
+            >
+          </li>
+          <li
+            class="border-b border-white hover:bg-white md:hover:bg-[#105099] flex items-center justify-between h-full"
+            @click="showSubMenu = !showSubMenu"
+          >
+            <span
+              class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
+              >VTV với khán giả
+            </span>
+            <span
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-5 font-bold md:hidden"
+                :class="showSubMenu ? 'text-black' : 'text-white'"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  :d="
+                    !showSubMenu
+                      ? 'm8.25 4.5 7.5 7.5-7.5 7.5'
+                      : 'm19.5 8.25-7.5 7.5-7.5-7.5'
+                  "
+                />
+              </svg>
+            </span>
+          </li>
+
+          <!-- Sub menu  -->
+          <ul
+            class="absolute uppercase md:hidden w-screen bg-white p-2 z-0"
+            v-if="showSubMenu"
+          >
+            <li class="hover:text-textHover text-black">Chương trình mới</li>
+            <li class="hover:text-textHover text-black">
+              Đăng ký tham giam chương trình
+            </li>
+          </ul>
+        </ul>
+        <span @click="showNavOnMobile">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -134,7 +229,6 @@
             stroke-width="1.5"
             stroke="currentColor"
             class="size-6 xl:size-7 text-white cursor-pointer"
-            @click="showNavOnMobile"
           >
             <path
               stroke-linecap="round"
@@ -142,100 +236,6 @@
               d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
           </svg>
-
-          <ul
-            class="absolute top-0 left-0 md:top-8 md:-left-5 w-screen md:w-80 md:h-screen bg-[#105099] text-white md:hidden group-hover:block opacity-0 group-hover:opacity-100 transition-all duration-500 z-50 md:transform-none"
-            :class="!showNavMobile ? 'translate-x-0' : '-translate-x-full'"
-          >
-            <li class="border-b border-white hover:bg-white">
-              <span
-                class="hidden md:inline-block block p-3 hover:text-textHover hover:translate-x-10 transition-transform duration-300 cursor-pointer"
-                >Giới thiệu</span
-              >
-              <span
-                class="md:hidden uppercase block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer"
-                >Trang chủ</span
-              >
-            </li>
-            <li class="border-b border-white hover:bg-white">
-              <span
-                class="md:hidden uppercase block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer"
-                >Giới thiệu</span
-              >
-            </li>
-
-            <li class="border-b border-white hover:bg-white">
-              <span
-                class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
-                >Tin tức - Sự kiện</span
-              >
-            </li>
-            <li class="border-b border-white hover:bg-white">
-              <span
-                class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
-                >Hợp tác quốc tế</span
-              >
-            </li>
-            <li class="border-b border-white hover:bg-white">
-              <span
-                class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
-                >VTV vì cộng đồng</span
-              >
-            </li>
-            <li class="border-b border-white hover:bg-white hidden md:block">
-              <span
-                class="p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case hidden md:block"
-                >VTV với khán giả</span
-              >
-            </li>
-            <li class="border-b border-white hover:bg-white hidden md:block">
-              <span
-                class="p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case hidden md:block"
-                >Bản tin Magazine</span
-              >
-            </li>
-            <li
-              class="border-b border-white hover:bg-white md:hover:bg-[#105099] flex items-center justify-between h-full"
-              @click="showSubMenu = !showSubMenu"
-            >
-              <span
-                class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
-                >VTV với khán giả
-              </span>
-              <span
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="size-5 font-bold md:hidden"
-                  :class="showSubMenu ? 'text-black' : 'text-white'"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    :d="
-                      !showSubMenu
-                        ? 'm8.25 4.5 7.5 7.5-7.5 7.5'
-                        : 'm19.5 8.25-7.5 7.5-7.5-7.5'
-                    "
-                  />
-                </svg>
-              </span>
-            </li>
-
-            <!-- Sub menu  -->
-            <ul
-              class="absolute uppercase md:hidden w-screen bg-white p-2 z-0"
-              v-if="showSubMenu"
-            >
-              <li class="hover:text-textHover text-black">Chương trình mới</li>
-              <li class="hover:text-textHover text-black">
-                Đăng ký tham giam chương trình
-              </li>
-            </ul>
-          </ul>
         </span>
       </div>
       <!-- list navbar desktop center  -->
@@ -320,7 +320,7 @@
         <Menu as="div" class="relative inline-block">
           <div>
             <MenuButton
-              class="flex bg-[#0048a8] p-2 rounded-md hover:bg-mainMenu hover:border hover:border-textHover hover:rounded-md text-textGrayPrimary hover:text-white cursor-pointer"
+              class="flex bg-[#0048a8] p-1 rounded-md hover:bg-mainMenu hover:border hover:border-textHover hover:rounded-md text-textGrayPrimary hover:text-white cursor-pointer"
             >
               <span
                 ><svg

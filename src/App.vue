@@ -1,7 +1,7 @@
 <template>
   <HeaderComp />
   <!-- Body -->
-  <div class="xl:container md:m-10 flex">
+  <div class="flex md:m-10 xl:container xl:mx-auto">
     <div class="w-screen md:w-9/12">
       <!-- Left  -->
       <router-view></router-view>

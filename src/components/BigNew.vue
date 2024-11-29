@@ -6,7 +6,7 @@
     <img :src="props?.data?.thumbnail" alt="" class="w-screen" />
     <div class="">
       <p
-        class="font-bold md:py-[10px] hover:text-textHover cursor-pointer"
+        class="font-bold md:my-[10px] hover:text-textHover cursor-pointer line-clamp-3"
         :class="props.isBigNew ? 'text-[16px]' : 'text-[14px]'"
       >
         {{ props?.data?.title }}

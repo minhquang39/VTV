@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <p
-      class="uppercase font-bold text-xl text-center block relative after:w-6 after:h-1 after:bg-textHover after:absolute after:top-1/3 after:left-0 before:w-6 before:h-1 before:bg-textHover before:absolute before:top-1/3 before:right-0 hover:text-textHover cursor-pointer"
+      class="uppercase font-bold text-lg text-center block relative after:w-6 after:h-1 after:bg-textHover after:absolute after:top-1/3 after:left-0 before:w-6 before:h-1 before:bg-textHover before:absolute before:top-1/3 before:right-0 hover:text-textHover cursor-pointer"
     >
       Lãnh đạo đài THVN
     </p>
