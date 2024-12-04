@@ -7,7 +7,7 @@
     </h3>
 
     <div class="flex justify-center">
-      <div class="w-screen md:w-10/12">
+      <div class="w-full md:w-10/12">
         <h2 class="my-6 text-[#33332F] text-2xl font-semibold leading-10">
           {{ postContent?.title }}
         </h2>
@@ -104,6 +104,7 @@ const fetchData = async (id) => {
 onMounted(() => {
   console.log("Mounted with route.params.id:", route.params.id);
   fetchData(route.params.id); // Fetch dữ liệu ban đầu
+  window.scrollTo({ top: 0, behavior: "auto" });
 });
 
 watch(

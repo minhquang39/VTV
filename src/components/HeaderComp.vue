@@ -129,7 +129,7 @@
       <div class="py-2 relative group">
         <!-- Nav on mobile  -->
         <ul
-          class="absolute top-0 -left-2 md:top-8 md:-left-5 w-screen md:w-80 md:h-screen bg-[#105099] text-white md:hidden group-hover:block opacity-0 group-hover:opacity-100 transition-all duration-500 z-50 md:transform-none"
+          class="absolute top-0 -left-2 md:top-8 md:-left-5 w-screen md:w-80 md:h-screen xl:top-10 xl:-left-10 bg-[#105099] text-white md:hidden group-hover:block opacity-0 group-hover:opacity-100 transition-all duration-500 z-50 md:transform-none"
           :class="showNavMobile ? 'translate-x-0' : '-translate-x-full'"
         >
           <li class="border-b border-white hover:bg-white">
@@ -180,7 +180,7 @@
             >
           </li>
           <li
-            class="border-b border-white hover:bg-white md:hover:bg-[#105099] flex items-center justify-between h-full"
+            class="border-b border-white hover:bg-white hover:text-textHover md:hover:bg-[#105099] flex items-center justify-between h-full"
             @click="showSubMenu = !showSubMenu"
           >
             <span
@@ -245,7 +245,7 @@
         <li
           class="px-3 py-3 hover:bg-white hover:text-textHover cursor-pointer"
         >
-          Trang chủ
+          <router-link to="/">Trang chủ</router-link>
         </li>
         <li
           class="px-3 py-3 hover:bg-white hover:text-textHover cursor-pointer"
