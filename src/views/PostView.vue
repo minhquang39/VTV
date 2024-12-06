@@ -17,7 +17,10 @@
           <span class="text-[#8b8b8b]"> đã đăng lúc</span>
           {{ postContent?.time }} - {{ postDate }}
         </p>
-        <div v-html="postContent?.content" class="text-justify mb-5"></div>
+        <div
+          v-html="postContent?.content"
+          class="text-justify mb-5 leading-7"
+        ></div>
         <div class="flex text-xs text-[#8d8d8d] gap-x-3">
           <div class="flex gap-x-1">
             <span
@@ -65,16 +68,40 @@
         </div>
       </div>
     </div>
+    <!--  -->
+    <div class="mx-2 md:hidden">
+      <div class="my-5">
+        <Calender />
+      </div>
+      <div class="my-5">
+        <img src="/images/lichtiepdan.jpg" alt="" />
+      </div>
+      <div class="my-5">
+        <list-work />
+      </div>
+      <div>
+        <img src="/images/vtv_time.jpg" alt="" />
+      </div>
+      <div class="my-5">
+        <widget-link />
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch, defineAsyncComponent } from "vue";
 import { useRoute } from "vue-router";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
+import WidgetLink from "../components/WidgetLink.vue";
+import ListWork from "../components/ListWork.vue";
+
+const Calender = defineAsyncComponent(() =>
+  import("../components/CalenderComp.vue")
+);
 
 const route = useRoute();
 const postContent = ref(null);
@@ -115,3 +142,9 @@ watch(
   }
 );
 </script>
+
+<style scoped>
+p {
+  line-height: 1.8;
+}
+</style>

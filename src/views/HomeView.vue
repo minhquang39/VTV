@@ -14,6 +14,14 @@
         </router-link>
       </div>
     </div>
+    <div class="mx-2 md:hidden">
+      <div class="my-2 md:hidden">
+        <Calender />
+      </div>
+      <div class="my-2 md:hidden">
+        <img src="/images/lichtiepdan.jpg" alt="" />
+      </div>
+    </div>
     <!-- Tin tức sự kiện  -->
     <div class="w-full p-2 md:w-6/12" v-if="post1">
       <h2
@@ -218,13 +226,36 @@
         </div>
       </div>
     </div>
+    <div class="mx-2 md:hidden">
+      <div class="my-5">
+        <Calender />
+      </div>
+      <div class="my-5">
+        <img src="/images/lichtiepdan.jpg" alt="" />
+      </div>
+      <div class="my-5">
+        <list-work />
+      </div>
+      <div>
+        <img src="/images/vtv_time.jpg" alt="" />
+      </div>
+      <div class="my-5">
+        <widget-link />
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import BigNew from "@/components/BigNew.vue";
-import { ref } from "vue";
+import { ref, defineAsyncComponent } from "vue";
 import { onMounted } from "vue";
+import WidgetLink from "../components/WidgetLink.vue";
+import ListWork from "../components/ListWork.vue";
+
+const Calender = defineAsyncComponent(() =>
+  import("../components/CalenderComp.vue")
+);
 
 const post = ref("");
 const post1 = ref("");

@@ -12,16 +12,16 @@
       <div class="my-5">
         <Calender />
       </div>
-      <div>
+      <div class="my-5">
         <img src="/images/lichtiepdan.jpg" alt="" />
       </div>
-      <div>
+      <div class="my-5">
         <list-work />
       </div>
       <div>
         <img src="/images/vtv_time.jpg" alt="" />
       </div>
-      <div>
+      <div class="my-5">
         <widget-link />
       </div>
     </div>

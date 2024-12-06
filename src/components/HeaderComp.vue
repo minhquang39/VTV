@@ -133,44 +133,59 @@
           :class="showNavMobile ? 'translate-x-0' : '-translate-x-full'"
         >
           <li class="border-b border-white hover:bg-white">
-            <span
-              class="hidden md:inline-block block p-3 hover:text-textHover hover:translate-x-10 transition-transform duration-300 cursor-pointer"
-              >Giới thiệu</span
+            <router-link to="/gioi-thieu"
+              ><span
+                class="hidden md:inline-block block p-3 hover:text-textHover hover:translate-x-10 transition-transform duration-300 cursor-pointer"
+                >Giới thiệu</span
+              ></router-link
             >
-            <span
-              class="md:hidden uppercase block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer"
-              >Trang chủ</span
-            >
+
+            <router-link to="/">
+              <span
+                class="md:hidden uppercase block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer"
+                >Trang chủ</span
+              >
+            </router-link>
           </li>
           <li class="border-b border-white hover:bg-white">
-            <span
-              class="md:hidden uppercase block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer"
-              >Giới thiệu</span
+            <router-link to="/gioi-thieu">
+              <span
+                class="md:hidden uppercase block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer"
+                >Giới thiệu</span
+              ></router-link
             >
           </li>
 
           <li class="border-b border-white hover:bg-white">
-            <span
-              class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
-              >Tin tức - Sự kiện</span
+            <router-link to="/tin-tuc">
+              <span
+                class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
+                >Tin tức - Sự kiện</span
+              ></router-link
             >
           </li>
           <li class="border-b border-white hover:bg-white">
-            <span
-              class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
-              >Hợp tác quốc tế</span
+            <router-link to="/hop-tac-quoc-te"
+              ><span
+                class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
+                >Hợp tác quốc tế</span
+              ></router-link
             >
           </li>
           <li class="border-b border-white hover:bg-white">
-            <span
-              class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
-              >VTV vì cộng đồng</span
+            <router-link to="vtv-vi-cong-dong">
+              <span
+                class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
+                >VTV vì cộng đồng</span
+              ></router-link
             >
           </li>
           <li class="border-b border-white hover:bg-white hidden md:block">
-            <span
-              class="p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case hidden md:block"
-              >VTV với khán giả</span
+            <router-link to="/vtv-voi-khan-gia"
+              ><span
+                class="p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case hidden md:block"
+                >VTV với khán giả</span
+              ></router-link
             >
           </li>
           <li class="border-b border-white hover:bg-white hidden md:block">
@@ -183,10 +198,12 @@
             class="border-b border-white hover:bg-white hover:text-textHover md:hover:bg-[#105099] flex items-center justify-between h-full"
             @click="showSubMenu = !showSubMenu"
           >
-            <span
-              class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
-              >VTV với khán giả
-            </span>
+            <router-link to="/vtv-voi-khan-gia">
+              <span
+                class="block p-3 hover:text-textHover transition:none md:hover:translate-x-10 transition-transform duration-300 cursor-pointer uppercase md:normal-case"
+                >VTV với khán giả
+              </span></router-link
+            >
             <span
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -215,7 +232,11 @@
             class="absolute uppercase md:hidden w-screen bg-white p-2 z-0"
             v-if="showSubMenu"
           >
-            <li class="hover:text-textHover text-black">Chương trình mới</li>
+            <router-link to="/chuong-trinh-moi">
+              <li class="hover:text-textHover text-black">
+                Chương trình mới
+              </li></router-link
+            >
             <li class="hover:text-textHover text-black">
               Đăng ký tham giam chương trình
             </li>
@@ -247,49 +268,64 @@
         >
           <router-link to="/">Trang chủ</router-link>
         </li>
-        <li
-          class="px-3 py-3 hover:bg-white hover:text-textHover cursor-pointer"
+        <router-link to="/gioi-thieu">
+          <li
+            class="px-3 py-3 hover:bg-white hover:text-textHover cursor-pointer"
+          >
+            Giới thiệu
+          </li></router-link
         >
-          Giới thiệu
-        </li>
-        <li
-          class="px-3 py-3 hover:bg-white hover:text-textHover cursor-pointer"
+        <router-link to="/tin-tuc">
+          <li
+            class="px-3 py-3 hover:bg-white hover:text-textHover cursor-pointer"
+          >
+            Tin tức - sự kiện
+          </li></router-link
         >
-          Tin tức - sự kiện
-        </li>
-        <li
-          class="px-3 py-3 hover:bg-white hover:text-textHover cursor-pointer"
-        >
-          Hợp tác quốc tế
-        </li>
-        <li
-          class="px-3 py-3 hover:bg-white hover:text-textHover cursor-pointer"
-        >
-          VTV vì cộng đồng
-        </li>
+        <router-link to="/hop-tac-quoc-te">
+          <li
+            class="px-3 py-3 hover:bg-white hover:text-textHover cursor-pointer"
+          >
+            Hợp tác quốc tế
+          </li>
+        </router-link>
+        <router-link to="/vtv-vi-cong-dong">
+          <li
+            class="px-3 py-3 hover:bg-white hover:text-textHover cursor-pointer"
+          >
+            VTV vì cộng đồng
+          </li>
+        </router-link>
         <li
           class="relative group flex items-center origin-top"
           @mouseover="showSubMenuDesktop = true"
           @mouseleave="showSubMenuDesktop = false"
         >
-          <a
-            href="#"
-            class="hover:bg-white hover:text-textHover cursor-pointer block h-full px-3 py-3"
-            >VTV với khán giả</a
-          >
+          <router-link to="/vtv-voi-khan-gia">
+            <span
+              class="hover:bg-white hover:text-textHover cursor-pointer block h-full p-3"
+            >
+              VTV với khán giả
+            </span>
+          </router-link>
+
           <ul
             class="absolute left-0 top-10 w-72 shadow-subMenu px-3 hidden group-hover:block origin-top scale-0 group-hover:scale-100 transition-transform duration-300 z-50 bg-white"
           >
-            <li
-              class="uppercase text-black py-2 lg:hover:translate-x-5 duration-300 lg:hover:text-textHover"
-            >
-              Chương trình mới
-            </li>
-            <li
-              class="uppercase text-black py-2 lg:hover:translate-x-5 duration-300 lg:hover:text-textHover"
-            >
-              Đăng ký tham gia chương trình
-            </li>
+            <router-link to="/chuong-trinh-moi">
+              <li
+                class="uppercase text-black py-2 lg:hover:translate-x-5 duration-300 lg:hover:text-textHover"
+              >
+                Chương trình mới
+              </li>
+            </router-link>
+            <router-link to="/dang-ky-tham-gia-chuong-trinh"
+              ><li
+                class="uppercase text-black py-2 lg:hover:translate-x-5 duration-300 lg:hover:text-textHover"
+              >
+                Đăng ký tham gia chương trình
+              </li>
+            </router-link>
           </ul>
           <span
             ><svg

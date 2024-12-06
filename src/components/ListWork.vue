@@ -1,10 +1,16 @@
 <template>
   <div class="w-full">
     <!-- Top  -->
-    <div class="bg-[#07356a] flex p-2 rounded-t-[15px]">
+    <div
+      class="bg-[#07356a] flex justify-between md:justify-normal p-2 rounded-t-[15px]"
+    >
       <!-- Left  -->
-      <div>
-        <div class="flex cursor-pointer gap-x-3" @click="toggleShowDate">
+      <div class="relative">
+        <div
+          class="flex cursor-pointer gap-x-3"
+          @click="toggleShowDate"
+          ref="calendar"
+        >
           <img
             src="https://vtv.gov.vn/themes/viettelfamily/images/work.png"
             alt=""
@@ -13,25 +19,26 @@
             >Lịch phát sóng</span
           >
         </div>
-        <!-- <div>
+        <!-- Vue calender  -->
+        <div>
           <vue-cal
             v-show="showDate"
-            class="vuecal--rounded-theme vuecal--green-theme"
+            class="vuecal--rounded-theme vuecal--blue-theme absolute bg-white"
             xsmall
             hide-view-selector
             :time="false"
             active-view="month"
             :disable-views="['week']"
-            style="width: 270px; height: 300px"
+            style="width: 220px; height: 300px"
           >
           </vue-cal>
-        </div> -->
+        </div>
       </div>
       <!-- Right -->
       <div class="flex ml-5">
         <div class="relative group w-full">
           <div>
-            <img :src="channels[channelId].path" alt="" class="w-16" />
+            <img :src="channels[channelId].path" alt="" class="w-20 md:w-16" />
           </div>
           <div class="absolute hidden group-hover:block bg-[#ccc]">
             <div
@@ -41,7 +48,7 @@
               class="p-2"
               @click="handleSelectChannel(id)"
             >
-              <img :src="channel.path" alt="" class="w-16" />
+              <img :src="channel.path" alt="" class="w-20" />
             </div>
           </div>
         </div>
@@ -64,7 +71,7 @@
       </div>
     </div>
     <!-- Body  -->
-    <div class="rounded-b-[15px] bg-[#EEF3FA] flex justify-between">
+    <div class="rounded-b-[15px] bg-[#EEF3FA] hidden md:flex justify-between">
       <div
         class="flex flex-col text-center w-[calc(100%/7)]"
         v-for="index in 7"
@@ -85,13 +92,13 @@
     </div>
     <!-- Bot  -->
     <div
-      class="rounded-[15px] bg-[#eff0f1] border-2 border-[#ccc] max-h-[360px] min-h-[50px] overflow-y-auto"
+      class="rounded-[15px] bg-[#eff0f1] border-2 border-[#ccc] max-h-[360px] min-h-[50px] overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-300"
     >
       <!-- Loader If  -->
       <div v-if="!calendarContent">
         <div class="flex items-center justify-center h-auto">
           <div
-            class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid border-transparent"
+            class="border-gray-300 h-10 w-10 animate-spin rounded-full border-4 border-t-blue-600"
           ></div>
         </div>
       </div>
@@ -128,22 +135,32 @@
 import dayjs from "dayjs";
 var weekday = require("dayjs/plugin/weekday");
 dayjs.extend(weekday);
-// import VueCal from "vue-cal";
+import VueCal from "vue-cal";
 import "vue-cal/dist/vuecal.css";
-import { onMounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, useTemplateRef } from "vue";
 
 const currentDate = dayjs().day();
 const currentDateIdx = ref(currentDate);
-const calendarContent = ref();
+const calendarContent = ref(null);
+// Hanlde close calender
+const calendar = useTemplateRef("calendar");
+
+const handleCloseCalendar = (e) => {
+  if (calendar.value && !calendar.value.contains(e.target)) {
+    showDate.value = false;
+  }
+};
+
 const handleChangeCalendar = (index) => {
   currentDateIdx.value = index;
   handleLoadCalender(index);
 };
+
 //
 const handleLoadCalender = async (index) => {
   const res = await fetch("/data/data-content.json");
   const data = await res.json();
-  calendarContent.value = "";
+  calendarContent.value = null;
   setTimeout(() => {
     calendarContent.value = data.find(
       (content) => content.id === index - 1
@@ -207,5 +224,13 @@ const channels = ref([
 
 onMounted(() => {
   handleLoadCalender(currentDate - 1);
+
+  document.addEventListener("click", handleCloseCalendar);
+
+  console.log(calendar.value);
+});
+
+onUnmounted(() => {
+  document.removeEventListener("click", handleChangeCalendar);
 });
 </script>

@@ -3,7 +3,7 @@
     <h1 class="text-[#043b7a] text-xl uppercase font-semibold">
       Liên kết website
     </h1>
-    <div class="w-full">
+    <div class="w-full my-3">
       <select
         name=""
         id=""

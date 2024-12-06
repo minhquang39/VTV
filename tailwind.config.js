@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+
+const plugin = require("tailwind-scrollbar");
 module.exports = {
   safelist: ["text-red-500,italic"],
   content: ["./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
@@ -19,5 +21,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [plugin],
 };
