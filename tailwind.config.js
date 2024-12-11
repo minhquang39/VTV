@@ -2,7 +2,7 @@
 
 const plugin = require("tailwind-scrollbar");
 module.exports = {
-  safelist: ["text-red-500,italic"],
+  safelist: ["text-red-500,italic,list-disc,list-inside"],
   content: ["./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {

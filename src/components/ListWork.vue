@@ -223,11 +223,9 @@ const channels = ref([
 ]);
 
 onMounted(() => {
-  handleLoadCalender(currentDate - 1);
+  handleLoadCalender(currentDate);
 
   document.addEventListener("click", handleCloseCalendar);
-
-  console.log(calendar.value);
 });
 
 onUnmounted(() => {

@@ -474,7 +474,7 @@
 </template>
 <script setup>
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, defineExpose } from "vue";
 
 const showNavMobile = ref(false);
 const showSubMenu = ref(false);
@@ -496,6 +496,12 @@ const showNavOnMobile = () => {
   showNavMobile.value = !showNavMobile.value;
   showSubMenu.value = false;
 };
+
+const setOffModalMobile = () => {
+  showNavMobile.value = false;
+};
+
+defineExpose({ setOffModalMobile });
 
 onMounted(() => {
   document.onscroll = function () {

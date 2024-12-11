@@ -1,5 +1,5 @@
 <template>
-  <div v-if="postContent" class="py-4 px-2 md:py-12 md:pr-8">
+  <div v-if="postContent" class="py-4 px-3 md:py-12 md:pr-8">
     <h3
       class="pb-3 text-xl font-bold text-[#111] uppercase hover:text-textHover border-b-[3px] border-mainMenu"
     >

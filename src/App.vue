@@ -1,12 +1,9 @@
 <template>
-  <Header></Header>
-  <!-- Body -->
+  <Header ref="header"></Header>
   <div class="flex md:m-10 md:mb-0 xl:container xl:mx-auto flex-wrap">
     <div class="w-full md:w-9/12">
-      <!-- Left  -->
-      <router-view></router-view>
+      <router-view :key="route.path"></router-view>
     </div>
-    <!-- Right -->
     <div class="hidden md:block md:w-3/12 px-2 overflow-x-hidden">
       <Leader />
       <div class="my-5">
@@ -25,18 +22,23 @@
         <widget-link />
       </div>
     </div>
-    <!--Bot-->
     <MostContent></MostContent>
   </div>
-  <!-- Footer  -->
   <Footer></Footer>
   <SiteManager :displayNav="displayNavMobile" />
   <BackToTop></BackToTop>
 </template>
 
 <script setup>
-import { onMounted, defineAsyncComponent, ref } from "vue";
-
+import {
+  onMounted,
+  defineAsyncComponent,
+  ref,
+  watch,
+  // useTemplateRef,
+} from "vue";
+// import SekeletonComp from "./components/SekeletonComp.vue";
+import { useRoute } from "vue-router";
 import WidgetLink from "./components/WidgetLink.vue";
 import ListWork from "./components/ListWork.vue";
 
@@ -68,8 +70,11 @@ const Leader = defineAsyncComponent(() =>
   import("./components/LeaderComp.vue")
 );
 
+const route = useRoute();
+
 const displayNavMobile = ref(true);
 let lastScrollY = window.scrollY;
+const header = ref(null);
 onMounted(() => {
   window.addEventListener("scroll", () => {
     const currentScroll = window.scrollY;
@@ -92,6 +97,15 @@ onMounted(() => {
     lastScrollY = currentScroll;
   });
 });
+
+watch(
+  () => route.path,
+  (newPath, oldPath) => {
+    if (newPath !== oldPath) {
+      header.value?.setOffModalMobile();
+    }
+  }
+);
 </script>
 
 <style>

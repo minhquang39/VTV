@@ -4,7 +4,7 @@
       <h2
         class="text-xl uppercase font-bold py-2 border-b-[3px] border-[#07356a] hover:text-textHover cursor-pointer"
       >
-        Giới thiệu
+        {{ categoryData?.title }}
       </h2>
       <div class="mt-2">
         <!-- Big post  -->
@@ -24,19 +24,21 @@
             </h2>
             <div
               class="flex flex-col md:flex-row"
-              :class="index === 0 ? 'flex-col' : 'flex-row'"
+              :class="index === 0 ? 'md:flex-col' : 'flex-row'"
             >
-              <div class="md:w-6/12" :class="index !== 0 ? 'pr-[10px]' : ''">
+              <div
+                :class="
+                  (index !== 0 ? 'pr-[10px]' : '',
+                  index === 0 ? 'md:w-full' : 'md:w-6/12')
+                "
+              >
                 <img :src="post?.thumbnail" alt="" />
               </div>
-              <div
-                class="md:w-6/12"
-                :class="index === 0 ? 'w-full' : 'pl-[10px]'"
-              >
+              <div :class="index === 0 ? 'w-full' : 'pl-[10px] md:w-6/12'">
                 <div class="flex text-xs text-[#8d8d8d] gap-x-3 pt-[10px]">
                   <div class="flex gap-x-1">
-                    <span
-                      ><svg
+                    <span>
+                      <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -54,8 +56,8 @@
                     <span>{{ dayjs().from(dayjs(post?.date)) }}</span>
                   </div>
                   <div class="flex gap-x-1">
-                    <span
-                      ><svg
+                    <span>
+                      <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -78,7 +80,10 @@
                     <span>{{ post?.views }}</span>
                   </div>
                 </div>
-                <p class="text-[#555] text-sm md:w-[85%] pt-[10px]">
+                <p
+                  class="text-[#555] text-sm pt-[10px]"
+                  :class="index === 0 ? '' : 'md:w-[85]'"
+                >
                   {{ post?.description }}
                 </p>
               </div>
@@ -110,37 +115,72 @@
         </span>
       </button>
     </div>
-    <div class="w-full md:w-4/12 md:px-[10px]" v-if="categoryData.mostComment">
-      <h2
-        class="text-xl uppercase font-bold py-2 border-b-[3px] border-[#07356a] hover:text-textHover cursor-pointer"
-      >
-        Bài viết nhiều comment
-      </h2>
-      <div class="mt-2">
-        <!-- Most comment  -->
-        <router-link
-          v-for="(post, index) in categoryData.mostComment"
-          :key="post.id"
-          :to="{
-            path: `/post/${post.id}`,
-          }"
+    <div class="w-full md:w-4/12 md:px-[10px]">
+      <div class="" v-if="categoryData.mostLike">
+        <h2
+          class="text-xl uppercase font-bold py-2 border-b-[3px] border-[#07356a] hover:text-textHover cursor-pointer"
         >
-          <div
-            class="flex py-[10px] mb-[14px] border-b border-[#B0A8A8]"
-            :class="{
-              'border-none': index === categoryData.mostComment.length - 1,
+          Bài viết xem nhiều
+        </h2>
+        <div class="mt-2">
+          <!-- Most comment  -->
+          <router-link
+            v-for="(post, index) in categoryData.mostLike"
+            :key="post.id"
+            :to="{
+              path: `/post/${post.id}`,
             }"
           >
-            <div class="w-4/12 md:w-6/12">
-              <img :src="post.thumbnail" alt="" />
-            </div>
-            <p
-              class="w-8/12 md:w-6/12 ml-2 line-clamp-4 font-bold text-sm text-[#555]"
+            <div
+              class="flex py-[10px] mb-[14px] border-b border-[#B0A8A8]"
+              :class="{
+                'border-none': index === categoryData.mostLike.length - 1,
+              }"
             >
-              {{ post.title }}
-            </p>
-          </div>
-        </router-link>
+              <div class="w-4/12 md:w-6/12">
+                <img :src="post.thumbnail" alt="" />
+              </div>
+              <p
+                class="w-8/12 md:w-6/12 ml-2 line-clamp-4 font-bold text-sm text-[#555]"
+              >
+                {{ post.title }}
+              </p>
+            </div>
+          </router-link>
+        </div>
+      </div>
+      <div class="" v-if="categoryData.mostComment">
+        <h2
+          class="text-xl uppercase font-bold py-2 border-b-[3px] border-[#07356a] hover:text-textHover cursor-pointer"
+        >
+          Bài viết nhiều comment
+        </h2>
+        <div class="mt-2">
+          <!-- Most comment  -->
+          <router-link
+            v-for="(post, index) in categoryData.mostComment"
+            :key="post.id"
+            :to="{
+              path: `/post/${post.id}`,
+            }"
+          >
+            <div
+              class="flex py-[10px] mb-[14px] border-b border-[#B0A8A8]"
+              :class="{
+                'border-none': index === categoryData.mostComment.length - 1,
+              }"
+            >
+              <div class="w-4/12 md:w-6/12">
+                <img :src="post.thumbnail" alt="" />
+              </div>
+              <p
+                class="w-8/12 md:w-6/12 ml-2 line-clamp-4 font-bold text-sm text-[#555]"
+              >
+                {{ post.title }}
+              </p>
+            </div>
+          </router-link>
+        </div>
       </div>
     </div>
     <div class="mx-2 md:hidden">
@@ -208,7 +248,6 @@ const showMore = () => {
 const fetchData = async (id) => {
   try {
     const res = await fetch(`/data/category/${id}.json`);
-    console.log(id);
     categoryData.value = await res.json();
   } catch (err) {
     console.log(err);
@@ -219,7 +258,6 @@ onMounted(() => {
   categoryId.value = route.params.category;
 
   fetchData(categoryId.value);
-  console.log(categoryData.value);
 });
 
 watchEffect(() => {
