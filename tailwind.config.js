@@ -13,6 +13,7 @@ module.exports = {
         textBlue: "#337ab7",
         customBg: "rgba(0,0,0,.3)",
         mainMenu: "#07356a",
+        bgModal: "rgba(255,255,255,.9)",
       },
       boxShadow: {
         customHeader:

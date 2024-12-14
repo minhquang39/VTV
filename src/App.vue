@@ -25,22 +25,23 @@
     <MostContent></MostContent>
   </div>
   <Footer></Footer>
-  <SiteManager :displayNav="displayNavMobile" />
+  <SiteManager
+    :displayNav="displayNavMobile"
+    @openModalDownload="isDisplayModal = true"
+  />
   <BackToTop></BackToTop>
+  <ModalDownload
+    :isDisplay="isDisplayModal"
+    @closeModalDownload="isDisplayModal = false"
+  />
 </template>
 
 <script setup>
-import {
-  onMounted,
-  defineAsyncComponent,
-  ref,
-  watch,
-  // useTemplateRef,
-} from "vue";
-// import SekeletonComp from "./components/SekeletonComp.vue";
+import { onMounted, defineAsyncComponent, ref } from "vue";
 import { useRoute } from "vue-router";
 import WidgetLink from "./components/WidgetLink.vue";
 import ListWork from "./components/ListWork.vue";
+import ModalDownload from "./components/ModalDownload.vue";
 
 const Header = defineAsyncComponent(() =>
   import("./components/HeaderComp.vue")
@@ -70,11 +71,12 @@ const Leader = defineAsyncComponent(() =>
   import("./components/LeaderComp.vue")
 );
 
+const isDisplayModal = ref(false);
+
 const route = useRoute();
 
 const displayNavMobile = ref(true);
 let lastScrollY = window.scrollY;
-const header = ref(null);
 onMounted(() => {
   window.addEventListener("scroll", () => {
     const currentScroll = window.scrollY;
@@ -97,15 +99,6 @@ onMounted(() => {
     lastScrollY = currentScroll;
   });
 });
-
-watch(
-  () => route.path,
-  (newPath, oldPath) => {
-    if (newPath !== oldPath) {
-      header.value?.setOffModalMobile();
-    }
-  }
-);
 </script>
 
 <style>

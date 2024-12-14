@@ -474,7 +474,8 @@
 </template>
 <script setup>
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
-import { onMounted, ref, defineExpose } from "vue";
+import { onMounted, ref, watch } from "vue";
+import { useRoute } from "vue-router";
 
 const showNavMobile = ref(false);
 const showSubMenu = ref(false);
@@ -497,11 +498,22 @@ const showNavOnMobile = () => {
   showSubMenu.value = false;
 };
 
-const setOffModalMobile = () => {
-  showNavMobile.value = false;
-};
+// const setOffModalMobile = () => {
+//   showNavMobile.value = false;
+// };
 
-defineExpose({ setOffModalMobile });
+// defineExpose({ setOffModalMobile });
+
+const route = useRoute();
+
+watch(
+  () => route.path,
+  (newPath, oldPath) => {
+    if (newPath && oldPath) {
+      showNavMobile.value = false;
+    }
+  }
+);
 
 onMounted(() => {
   document.onscroll = function () {

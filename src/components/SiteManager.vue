@@ -37,7 +37,10 @@
         <span class="text-[#e7ebf0] text-sm hover:text-textHover">Sự kiện</span>
       </div>
     </router-link>
-    <div class="cursor-pointer flex flex-col items-center">
+    <div
+      class="cursor-pointer flex flex-col items-center"
+      @click="$emit('openModalDownload')"
+    >
       <img src="/images/site-manager/mobile.png" alt="" class="w-auto mb-1" />
       <span class="text-[#e7ebf0] text-sm hover:text-textHover">Mobile</span>
     </div>
@@ -87,7 +90,10 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, defineEmits } from "vue";
+
+const emit = defineEmits(["openModalDownload"]);
+console.log(emit);
 const props = defineProps({
   displayNav: { type: Boolean, required: true },
 });
