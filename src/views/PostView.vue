@@ -90,17 +90,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, defineAsyncComponent } from "vue";
-import { useRoute } from "vue-router";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
+import { ref, onMounted, watch, defineAsyncComponent } from 'vue';
+import { useRoute } from 'vue-router';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
-import WidgetLink from "../components/WidgetLink.vue";
-import ListWork from "../components/ListWork.vue";
+import WidgetLink from '../components/WidgetLink.vue';
+import ListWork from '../components/ListWork.vue';
 
 const Calender = defineAsyncComponent(() =>
-  import("../components/CalenderComp.vue")
+  import('../components/CalenderComp.vue')
 );
 
 const route = useRoute();
@@ -110,34 +110,34 @@ const postDate = ref(null);
 
 const fetchData = async (id) => {
   try {
-    const res = await fetch("/data/allpost.json");
+    const res = await fetch('/data/allpost.json');
     const data = await res.json();
 
     postContent.value = data.find((post) => post.id === parseInt(id));
     if (postContent.value) {
       photoBy.value = postContent.value.photoBy;
       postDate.value = new Date(postContent.value.date).toLocaleDateString(
-        "vi",
-        "VN"
+        'vi',
+        'VN'
       );
     } else {
       console.error(`Post with ID ${id} not found`);
     }
   } catch (err) {
-    console.error("Error fetching data:", err);
+    console.error('Error fetching data:', err);
   }
 };
 
 onMounted(() => {
-  console.log("Mounted with route.params.id:", route.params.id);
+  console.log('Mounted with route.params.id:', route.params.id);
   fetchData(route.params.id); // Fetch dữ liệu ban đầu
-  window.scrollTo({ top: 0, behavior: "auto" });
+  window.scrollTo({ top: 0, behavior: 'auto' });
 });
 
 watch(
   () => route.params.id, // Watch tham số id trong route
   (newId) => {
-    console.log("Route ID changed:", newId);
+    console.log('Route ID changed:', newId);
     if (newId) fetchData(newId);
   }
 );

@@ -41,31 +41,31 @@
 </template>
 
 <script setup>
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { ref } from "vue";
-import { Navigation, Pagination, History } from "swiper/modules";
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { ref } from 'vue';
+import { Navigation, Pagination, History } from 'swiper/modules';
 
 const modules = ref([Navigation, Pagination, History]);
 
 const apps = [
   {
-    path: "/images/most-content/tvad.jpg",
-    name: "Dịch vụ quảng cáo",
+    path: '/images/most-content/tvad.jpg',
+    name: 'Dịch vụ quảng cáo',
   },
   {
-    path: "/images/most-content/vtvgo.jpg",
-    name: "Sản phẩm nội dung số",
+    path: '/images/most-content/vtvgo.jpg',
+    name: 'Sản phẩm nội dung số',
   },
   {
-    path: "/images/most-content/vtvcab.jpg",
-    name: "Truyền hình trả tiền",
+    path: '/images/most-content/vtvcab.jpg',
+    name: 'Truyền hình trả tiền',
   },
   {
-    path: "/images/most-content/k+.jpg",
-    name: "Truyền hình trả tiền",
+    path: '/images/most-content/k+.jpg',
+    name: 'Truyền hình trả tiền',
   },
 ];
 </script>

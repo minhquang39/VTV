@@ -473,9 +473,9 @@
   </header>
 </template>
 <script setup>
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
-import { onMounted, ref, watch } from "vue";
-import { useRoute } from "vue-router";
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
+import { onMounted, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
 const showNavMobile = ref(false);
 const showSubMenu = ref(false);
@@ -483,14 +483,14 @@ const showSubMenuDesktop = ref(false);
 const isHiddenHeader = ref(false);
 
 const appIcons = [
-  { path: "/images/logo-app/logo-app-vtvnews.png", name: "VTV News" },
-  { path: "/images/logo-app/logo-app-vtvgo.jpg", name: "VTVGo" },
-  { path: "/images/logo-app/logo-app-vtv-giai-tri.jpg", name: "VTV Giải Trí" },
-  { path: "/images/logo-app/logo-app-vtvcab-on.png", name: "VTVCab ON" },
-  { path: "/images/logo-app/logo-app-k-plus.png", name: "myK+" },
-  { path: "/images/logo-app/logo-app-sctv.png", name: "SCTV Online" },
-  { path: "/images/logo-app/vtv-family.png", name: "VTV Family ADR" },
-  { path: "/images/logo-app/vtv-family.png", name: "VTV Family IOS" },
+  { path: '/images/logo-app/logo-app-vtvnews.png', name: 'VTV News' },
+  { path: '/images/logo-app/logo-app-vtvgo.jpg', name: 'VTVGo' },
+  { path: '/images/logo-app/logo-app-vtv-giai-tri.jpg', name: 'VTV Giải Trí' },
+  { path: '/images/logo-app/logo-app-vtvcab-on.png', name: 'VTVCab ON' },
+  { path: '/images/logo-app/logo-app-k-plus.png', name: 'myK+' },
+  { path: '/images/logo-app/logo-app-sctv.png', name: 'SCTV Online' },
+  { path: '/images/logo-app/vtv-family.png', name: 'VTV Family ADR' },
+  { path: '/images/logo-app/vtv-family.png', name: 'VTV Family IOS' },
 ];
 
 const showNavOnMobile = () => {

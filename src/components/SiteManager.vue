@@ -90,9 +90,9 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from "vue";
+import { defineProps, defineEmits } from 'vue';
 
-const emit = defineEmits(["openModalDownload"]);
+const emit = defineEmits(['openModalDownload']);
 console.log(emit);
 const props = defineProps({
   displayNav: { type: Boolean, required: true },

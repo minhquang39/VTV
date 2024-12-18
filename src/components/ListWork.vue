@@ -81,7 +81,7 @@
       >
         <!-- Hiển thị tên thứ -->
         <span class="text-[13px] font-bold">{{
-          index === 7 ? "CN" : `T${index + 1}`
+          index === 7 ? 'CN' : `T${index + 1}`
         }}</span>
 
         <!-- Sử dụng index - 1 để đưa vào .day() -->
@@ -132,18 +132,18 @@
 </template>
 
 <script setup>
-import dayjs from "dayjs";
-var weekday = require("dayjs/plugin/weekday");
+import dayjs from 'dayjs';
+var weekday = require('dayjs/plugin/weekday');
 dayjs.extend(weekday);
-import VueCal from "vue-cal";
-import "vue-cal/dist/vuecal.css";
-import { onMounted, onUnmounted, ref, useTemplateRef } from "vue";
+import VueCal from 'vue-cal';
+import 'vue-cal/dist/vuecal.css';
+import { onMounted, onUnmounted, ref, useTemplateRef } from 'vue';
 
 const currentDate = dayjs().day();
 const currentDateIdx = ref(currentDate);
 const calendarContent = ref(null);
 // Hanlde close calender
-const calendar = useTemplateRef("calendar");
+const calendar = useTemplateRef('calendar');
 
 const handleCloseCalendar = (e) => {
   if (calendar.value && !calendar.value.contains(e.target)) {
@@ -158,7 +158,7 @@ const handleChangeCalendar = (index) => {
 
 //
 const handleLoadCalender = async (index) => {
-  const res = await fetch("/data/data-content.json");
+  const res = await fetch('/data/data-content.json');
   const data = await res.json();
   calendarContent.value = null;
   setTimeout(() => {
@@ -182,53 +182,53 @@ const handleSelectChannel = (id) => {
 const channels = ref([
   {
     id: 0,
-    path: "/images/channel/logo-vtv-1.png",
+    path: '/images/channel/logo-vtv-1.png',
   },
   {
     id: 1,
-    path: "/images/channel/logo-vtv-2.png",
+    path: '/images/channel/logo-vtv-2.png',
   },
   {
     id: 2,
-    path: "/images/channel/logo-vtv-3.png",
+    path: '/images/channel/logo-vtv-3.png',
   },
   {
     id: 3,
-    path: "/images/channel/logo-vtv-4.png",
+    path: '/images/channel/logo-vtv-4.png',
   },
   {
     id: 4,
-    path: "/images/channel/logo-vtv-5.png",
+    path: '/images/channel/logo-vtv-5.png',
   },
   {
     id: 5,
-    path: "/images/channel/logo-vtv-5-25.png",
+    path: '/images/channel/logo-vtv-5-25.png',
   },
   {
     id: 6,
-    path: "/images/channel/logo-vtv-7.png",
+    path: '/images/channel/logo-vtv-7.png',
   },
   {
     id: 7,
-    path: "/images/channel/logo-vtv-8.png",
+    path: '/images/channel/logo-vtv-8.png',
   },
   {
     id: 8,
-    path: "/images/channel/logo-vtv-9.png",
+    path: '/images/channel/logo-vtv-9.png',
   },
   {
     id: 9,
-    path: "/images/channel/logo-vtv-can-tho.png",
+    path: '/images/channel/logo-vtv-can-tho.png',
   },
 ]);
 
 onMounted(() => {
   handleLoadCalender(currentDate);
 
-  document.addEventListener("click", handleCloseCalendar);
+  document.addEventListener('click', handleCloseCalendar);
 });
 
 onUnmounted(() => {
-  document.removeEventListener("click", handleChangeCalendar);
+  document.removeEventListener('click', handleChangeCalendar);
 });
 </script>

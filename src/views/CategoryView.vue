@@ -210,21 +210,22 @@ import {
   ref,
   watchEffect,
   defineAsyncComponent,
-} from "vue";
-import { useRoute } from "vue-router";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
+} from 'vue';
+import { useRoute } from 'vue-router';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
-import WidgetLink from "../components/WidgetLink.vue";
-import ListWork from "../components/ListWork.vue";
+
+import WidgetLink from '../components/WidgetLink.vue';
+import ListWork from '../components/ListWork.vue';
 
 const Calender = defineAsyncComponent(() =>
-  import("../components/CalenderComp.vue")
+  import('../components/CalenderComp.vue')
 );
 
 // Route
 const route = useRoute();
-const categoryId = ref("");
+const categoryId = ref('');
 
 // Data
 const categoryData = ref(null);

@@ -30,37 +30,37 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref } from 'vue';
 const leaders = ref([
   {
     id: 1,
-    path: "/images/leader/3.jpg",
-    name: "Nguyễn Thanh Lâm",
-    role: "Tổng Giám đốc",
+    path: '/images/leader/3.jpg',
+    name: 'Nguyễn Thanh Lâm',
+    role: 'Tổng Giám đốc',
   },
   {
     id: 2,
-    path: "/images/leader/2.jpg",
-    name: "Đinh Đắc Vĩnh",
-    role: "Phó Tổng Giám đốc",
+    path: '/images/leader/2.jpg',
+    name: 'Đinh Đắc Vĩnh',
+    role: 'Phó Tổng Giám đốc',
   },
   {
     id: 3,
-    path: "/images/leader/1.png",
-    name: "Đỗ Thanh Hải",
-    role: "Phó Tổng Giám đốc",
+    path: '/images/leader/1.png',
+    name: 'Đỗ Thanh Hải',
+    role: 'Phó Tổng Giám đốc',
   },
   {
     id: 4,
-    path: "/images/leader/5.png",
-    name: "Đỗ Đức Hoàng",
-    role: "Phó Tổng Giám đốc",
+    path: '/images/leader/5.png',
+    name: 'Đỗ Đức Hoàng',
+    role: 'Phó Tổng Giám đốc',
   },
   {
     id: 5,
-    path: "/images/leader/4.jpg",
-    name: "Lê Quyền",
-    role: "Phó Tổng Giám đốc",
+    path: '/images/leader/4.jpg',
+    name: 'Lê Quyền',
+    role: 'Phó Tổng Giám đốc',
   },
 ]);
 const index = ref(1);

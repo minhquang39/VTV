@@ -270,27 +270,27 @@
 </template>
 
 <script setup>
-import BigNew from "@/components/BigNew.vue";
-import { ref, defineAsyncComponent } from "vue";
-import { onMounted } from "vue";
-import WidgetLink from "../components/WidgetLink.vue";
-import ListWork from "../components/ListWork.vue";
-import SekeletonComp from "@/components/SekeletonComp.vue";
+import BigNew from '@/components/BigNew.vue';
+import { ref, defineAsyncComponent } from 'vue';
+import { onMounted } from 'vue';
+import WidgetLink from '../components/WidgetLink.vue';
+import ListWork from '../components/ListWork.vue';
+import SekeletonComp from '@/components/SekeletonComp.vue';
 
 const Calender = defineAsyncComponent(() =>
-  import("../components/CalenderComp.vue")
+  import('../components/CalenderComp.vue')
 );
 
 const isLoading = ref(false);
 const postData = ref(null);
 const urls = ref([
-  "./data/main.json",
-  "./data/tintucsukien.json",
-  "./data/vtvvoikhangia.json",
-  "./data/hoptacquocte.json",
-  "./data/vtvvicongdong.json",
-  "./data/chuyendoiso.json",
-  "./data/congtacdoanthe.json",
+  './data/main.json',
+  './data/tintucsukien.json',
+  './data/vtvvoikhangia.json',
+  './data/hoptacquocte.json',
+  './data/vtvvicongdong.json',
+  './data/chuyendoiso.json',
+  './data/congtacdoanthe.json',
 ]);
 
 const fetchAll = async () => {
@@ -314,13 +314,13 @@ const fetchAll = async () => {
   }
 };
 
-const post = ref("");
-const post1 = ref("");
-const post2 = ref("");
-const post3 = ref("");
-const post4 = ref("");
-const post5 = ref("");
-const post6 = ref("");
+const post = ref('');
+const post1 = ref('');
+const post2 = ref('');
+const post3 = ref('');
+const post4 = ref('');
+const post5 = ref('');
+const post6 = ref('');
 onMounted(async () => {
   fetchAll();
 });
