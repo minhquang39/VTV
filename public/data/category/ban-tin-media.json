@@ -1,0 +1,83 @@
+{
+  "title": "Bản tin media",
+  "content": [
+    {
+      "id": 84,
+      "type": "video",
+      "category": "1",
+      "category_name": "Bản tin media",
+      "title": "Trượt Zipline qua hồ nước cao nhất thế giới",
+      "author": "Mì tôm",
+      "photoBy": "",
+      "time": "16:37",
+      "date": "2022-12-01",
+      "views": "34010",
+      "thumbnail": "https://vtv.gov.vn//uploads/ketnoi/1/5capture-745x510.JPG",
+      "description": "VTV.vn - Tại Bolivia, những người đam mê thể thao mạo hiểm có thể băng qua Titicaca, được biết đến là hồ nước cao nhất thế giới, trên đường trượt zipline.",
+      "content": "VTV.vn - Tại Bolivia, những người đam mê thể thao mạo hiểm có thể băng qua Titicaca, được biết đến là hồ nước cao nhất thế giới, trên đường trượt zipline."
+    },
+    {
+      "id": 85,
+      "category": "1",
+      "type": "video",
+      "category_name": "Bản tin media",
+      "title": "Thưởng thức bỏng ngô thoả thích với giá 5USD",
+      "author": "Mì tôm",
+      "photoBy": "",
+      "time": "16:37",
+      "date": "2022-12-01",
+      "views": "38526",
+      "thumbnail": "https://vtv.gov.vn//uploads/ketnoi/1/3capture-745x510.JPG",
+      "description": "VTV.vn - Lời chào bán bỏng ngô \"ăn thỏa thích\" với giá chỉ hơn 5 USD của một rạp chiếu phim ở thủ đô Bangkok, Thái Lan đã khiến những người ghiền món ăn này không thể ngồi yên.",
+      "content": "VTV.vn - Lời chào bán bỏng ngô \"ăn thỏa \" với giá chỉ hơn 5 USD của một rạp chiếu phim ở thủ đô Bangkok, Thái Lan đã khiến những người ghiền món ăn này không thể ngồi yên."
+    },
+    {
+      "id": 86,
+      "category": "1",
+      "type": "video",
+      "category_name": "Bản tin media",
+      "title": "Dịch COVID-19 gia tăng mạnh tại Indonesia",
+      "author": "Mì tôm",
+      "photoBy": "",
+      "time": "16:37",
+      "date": "2022-12-01",
+      "views": "38216",
+      "thumbnail": "https://vtv.gov.vn//uploads/ketnoi/1/1capture-745x510.JPG",
+      "mp4": "https://www.youtube.com/watch?v=7Pg7I_IdBHY",
+      "description": "VTV.vn - Báo cáo của Tổ chức Y tế Thế giới công bố vào tuần trước cho thấy số bệnh nhân COVID-19 phải nhập viện ở Thủ đô Jakarta đã tăng khoảng 185% so với tháng trước.",
+      "content": "VTV.vn - Báo cáo của Tổ chức Y tế Thế giới công bố vào tuần trước cho thấy số bệnh nhân COVID-19 phải nhập viện ở Thủ đô Jakarta đã tăng khoảng 185% so với tháng trước."
+    },
+    {
+      "id": 87,
+      "category": "1",
+      "type": "video",
+      "category_name": "Bản tin media",
+      "title": "Phong cách xem bóng đặc trưng của người dân Qatar",
+      "author": "Mì tôm",
+      "photoBy": "",
+      "time": "16:37",
+      "date": "2022-12-01",
+      "views": "46662",
+      "thumbnail": "https://vtv.gov.vn//uploads/ketnoi/1/capture-260x161.JPG",
+      "description": "VTV.vn - Phải tới trận đấu hôm qua giữa Hà Lan và Qatar, nhóm phóng viên VTV mới có dịp được trải nghiệm những cách xem bóng đá đặc trưng của người dân Qatar bản địa.",
+      "content": "VTV.vn - Phải tới trận đấu hôm qua giữa Hà Lan và Qatar, nhóm phóng viên VTV mới có dịp được trải nghiệm những cách xem bóng đá đặc trưng của người dân Qatar bản địa."
+    }
+  ],
+  "mostComment": [
+    {
+      "id": 83,
+      "type": "video",
+      "category": "1",
+      "category_name": "Bản tin media",
+      "title": "Phong cách xem bóng đặc trưng của người dân Qatar",
+      "author": "Mì tôm",
+      "photoBy": "",
+      "time": "16:41",
+      "date": "2022-12-01",
+      "views": "46660",
+      "thumbnail": "https://vtv.gov.vn//uploads/ketnoi/1/capture-260x161.JPG",
+
+      "content": "VTV.vn - Phải tới trận đấu hôm qua giữa Hà Lan và Qatar, nhóm phóng viên VTV mới có dịp được trải nghiệm những cách xem bóng đá đặc trưng của người dân Qatar bản địa."
+    }
+  ]
+}

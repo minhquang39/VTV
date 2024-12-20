@@ -1,74 +1,11 @@
 <template>
-  <div v-if="postContent" class="py-4 px-3 md:py-12 md:pr-8">
-    <h3
-      class="pb-3 text-xl font-bold text-[#111] uppercase hover:text-textHover border-b-[3px] border-mainMenu"
-    >
-      {{ postContent?.category_name }}
-    </h3>
-
-    <div class="flex justify-center">
-      <div class="w-full md:w-10/12">
-        <h2 class="my-6 text-[#33332F] text-2xl font-semibold leading-10">
-          {{ postContent?.title }}
-        </h2>
-        <p class="mb-3 text-[#111111] text-sm font-semibold">
-          {{ postContent?.author }}
-          <span v-if="photoBy">- Ảnh: {{ photoBy }}</span>
-          <span class="text-[#8b8b8b]"> đã đăng lúc</span>
-          {{ postContent?.time }} - {{ postDate }}
-        </p>
-        <div
-          v-html="postContent?.content"
-          class="text-justify mb-5 leading-7"
-        ></div>
-        <div class="flex text-xs text-[#8d8d8d] gap-x-3">
-          <div class="flex gap-x-1">
-            <span
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="size-4"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                />
-              </svg>
-            </span>
-            <span>{{ dayjs().from(dayjs(postContent?.date)) }}</span>
-          </div>
-          <div class="flex gap-x-1">
-            <span
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="size-4"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
-                />
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                />
-              </svg>
-            </span>
-            <span>{{ postContent?.views }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--  -->
+  <div v-if="postContent" class="py-4 px-3 md:py-0 md:pr-8">
+    <component
+      :is="type === 'default' ? DefaultLayout : VideoLayout"
+      :post-content="postContent"
+      :photo-by="photoBy"
+      :post-date="postDate"
+    ></component>
     <div class="mx-2 md:hidden">
       <div class="my-5">
         <Calender />
@@ -90,12 +27,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, defineAsyncComponent } from 'vue';
+import { ref, onMounted, watch, defineAsyncComponent, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-
 dayjs.extend(relativeTime);
+
+import DefaultLayout from '../layout/DefaultLayout.vue';
+import VideoLayout from '../layout/VideoLayout.vue';
 import WidgetLink from '../components/WidgetLink.vue';
 import ListWork from '../components/ListWork.vue';
 
@@ -107,6 +46,8 @@ const route = useRoute();
 const postContent = ref(null);
 const photoBy = ref(null);
 const postDate = ref(null);
+
+const type = computed(() => postContent.value?.type || 'default');
 
 const fetchData = async (id) => {
   try {
@@ -129,7 +70,6 @@ const fetchData = async (id) => {
 };
 
 onMounted(() => {
-  console.log('Mounted with route.params.id:', route.params.id);
   fetchData(route.params.id); // Fetch dữ liệu ban đầu
   window.scrollTo({ top: 0, behavior: 'auto' });
 });
@@ -137,14 +77,7 @@ onMounted(() => {
 watch(
   () => route.params.id, // Watch tham số id trong route
   (newId) => {
-    console.log('Route ID changed:', newId);
     if (newId) fetchData(newId);
   }
 );
 </script>
-
-<style scoped>
-p {
-  line-height: 1.8;
-}
-</style>
