@@ -1,5 +1,6 @@
 <template>
-  <div v-if="postContent" class="py-4 px-3 md:py-0 md:pr-8">
+  <PostSekeleton v-if="isLoading"></PostSekeleton>
+  <div v-if="postContent && !isLoading" class="py-4 px-3 md:py-0 md:pr-8">
     <component
       :is="type === 'default' ? DefaultLayout : VideoLayout"
       :post-content="postContent"
@@ -33,6 +34,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 
+import PostSekeleton from '@/sekeleton/PostSekeleton.vue';
 import DefaultLayout from '../layout/DefaultLayout.vue';
 import VideoLayout from '../layout/VideoLayout.vue';
 import WidgetLink from '../components/WidgetLink.vue';
@@ -46,14 +48,15 @@ const route = useRoute();
 const postContent = ref(null);
 const photoBy = ref(null);
 const postDate = ref(null);
+const isLoading = ref(false);
 
 const type = computed(() => postContent.value?.type || 'default');
 
 const fetchData = async (id) => {
   try {
+    isLoading.value = true;
     const res = await fetch('/data/allpost.json');
     const data = await res.json();
-
     postContent.value = data.find((post) => post.id === parseInt(id));
     if (postContent.value) {
       photoBy.value = postContent.value.photoBy;
@@ -66,6 +69,10 @@ const fetchData = async (id) => {
     }
   } catch (err) {
     console.error('Error fetching data:', err);
+  } finally {
+    setTimeout(() => {
+      isLoading.value = false;
+    }, 1000);
   }
 };
 

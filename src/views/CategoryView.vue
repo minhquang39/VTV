@@ -1,5 +1,9 @@
 <template>
-  <div class="flex flex-col md:flex-row px-2 md:px-[10px]" v-if="categoryData">
+  <CategorySekeleton v-if="isLoading" />
+  <div
+    class="flex flex-col md:flex-row px-2 md:px-[10px]"
+    v-if="categoryData && !isLoading"
+  >
     <div class="w-full md:w-8/12 md:pr-[10px]">
       <h2
         class="text-xl uppercase font-bold py-2 border-b-[3px] border-[#07356a] hover:text-textHover cursor-pointer"
@@ -218,11 +222,12 @@ dayjs.extend(relativeTime);
 
 import WidgetLink from '../components/WidgetLink.vue';
 import ListWork from '../components/ListWork.vue';
-
+import CategorySekeleton from '@/sekeleton/CategorySekeleton.vue';
 const Calender = defineAsyncComponent(() =>
   import('../components/CalenderComp.vue')
 );
 
+const isLoading = ref(false);
 // Route
 const route = useRoute();
 const categoryId = ref('');
@@ -248,10 +253,15 @@ const showMore = () => {
 // Fetch DAta
 const fetchData = async (id) => {
   try {
+    isLoading.value = true;
     const res = await fetch(`/data/category/${id}.json`);
     categoryData.value = await res.json();
   } catch (err) {
     console.log(err);
+  } finally {
+    setTimeout(() => {
+      isLoading.value = false;
+    }, 1000);
   }
 };
 

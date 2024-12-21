@@ -6,7 +6,7 @@
     >
       {{ postContent?.category_name }}
     </h3>
-    <div class="flex">
+    <div class="flex flex-col md:flex-row">
       <div
         class="video-container w-full md:w-8/12 md:pr-[10px]"
         v-if="postContent?.mp4"
@@ -70,10 +70,26 @@
         <p>{{ postContent?.content }}</p>
         <b class="block text-right">{{ postContent?.author }}</b>
       </div>
-      <div class="md:w-4/12"></div>
+      <div class="md:w-4/12 md:pl-[10px]">
+        <router-link
+          v-for="(news, index) in subVideoList"
+          :key="index"
+          :to="{ path: `/post/${news.id}` }"
+        >
+          <div
+            class="flex pb-[13px] mb-[7px]"
+            :class="{ 'border-b border-[#505050]': index !== 3 }"
+          >
+            <img :src="news?.thumbnail" alt="" class="w-4/12 md:w-6/12" />
+            <p class="pl-[10px] w-8/12 md:w-6/12 line-clamp-2">
+              {{ news?.title }}
+            </p>
+          </div>
+        </router-link>
+      </div>
     </div>
     <!-- Video container  -->
-    <div class="md:mt-16">
+    <div class="md:mt-16 mb-10">
       <h3
         class="pb-3 mb-[10px] text-xl font-bold text-[#111] uppercase border-b-[3px] border-mainMenu"
       >
@@ -153,7 +169,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref, onMounted } from 'vue';
+import { defineProps, ref, onMounted, watchEffect } from 'vue';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
@@ -178,17 +194,23 @@ const extractYouTubeId = (url) => {
 
 const idVideo = ref(extractYouTubeId(props.postContent?.mp4));
 const videoList = ref(null);
+const subVideoList = ref(null);
+
 const fetchData = async () => {
   try {
     const res = await fetch('/data/category/video.json');
     const data = await res.json();
 
     videoList.value = data;
-    console.log(videoList.value);
+    subVideoList.value = data.slice(0, 4);
   } catch (error) {
     console.log(error);
   }
 };
+
+watchEffect(() => {
+  idVideo.value = extractYouTubeId(props.postContent?.mp4);
+});
 
 onMounted(() => {
   fetchData();
